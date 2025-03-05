@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Guldborg Vad - Modern Resume</title>
+    <style>
+        :root {
+            --primary: #003459;
+            --secondary: #007ea7;
+            --accent: #00a8e8;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border: #dee2e6;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.08);
+            --transition: all 0.25s ease;
+            
+            /* Achievement type colors */
+            --type-sales: #2c73d2;
+            --type-leadership: #845ec2;
+            --type-innovation: #ff9671;
+            --type-process: #00c9a7;
+            --type-strategy: #ffc75f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', 'Inter', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .page {
+            max-width: 1140px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-gap: 24px;
+            padding: 0 24px;
+        }
+        
+        /* Header Area */
+        .header {
+            grid-column: span 12;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-gap: inherit;
+            margin-bottom: 24px;
+        }
+        
+        .identity {
+            grid-column: span 8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .name {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        
+        .profession {
+            font-size: 1.25rem;
+            color: var(--secondary);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .contact-item i {
+            color: var(--secondary);
+        }
+        
+        .photo {
+            grid-column: span 4;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .photo-frame {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid white;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Profile Area */
+        .profile {
+            grid-column: span 12;
+            background-color: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+        
+        .profile-content {
+            font-size: 1.1rem;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
+        /* Metrics Grid */
+        .metrics {
+            grid-column: span 12;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            border-top: 4px solid var(--accent);
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .metric-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: var(--accent);
+            opacity: 0.2;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Experience Section */
+        .experience {
+            grid-column: span 8;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .experience-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+        }
+        
+        .experience-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent);
+        }
+        
+        .job-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            margin-bottom: 16px;
+        }
+        
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        
+        .job-company {
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+        
+        .job-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-align: right;
+        }
+        
+        .job-description {
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+        
+        /* Interactive Expandable Bullets */
+        .achievements {
+            margin-left: 0;
+            list-style-type: none;
+        }
+        
+        .achievement-item {
+            margin-bottom: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        
+        .achievement-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .achievement-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        .achievement-header {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: white;
+            transition: var(--transition);
+        }
+        
+        .achievement-header:hover {
+            background-color: rgba(0, 168, 232, 0.05);
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .achievement-title i {
+            opacity: 0.7;
+        }
+        
+        .achievement-toggle {
+            color: var(--gray);
+            font-size: 1rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .achievement-content {
+            padding: 0 16px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .achievement-content p {
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .achievement-item.active .achievement-content {
+            padding: 0 16px 16px;
+            max-height: 300px;
+        }
+        
+        .achievement-item.active .achievement-toggle {
+            transform: rotate(180deg);
+        }
+        
+        /* Achievement Type Indicators */
+        .achievement-type {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .type-sales {
+            background-color: var(--type-sales);
+        }
+        
+        .type-leadership {
+            background-color: var(--type-leadership);
+        }
+        
+        .type-innovation {
+            background-color: var(--type-innovation);
+        }
+        
+        .type-process {
+            background-color: var(--type-process);
+        }
+        
+        .type-strategy {
+            background-color: var(--type-strategy);
+        }
+        
+        /* Side Column */
+        .side-column {
+            grid-column: span 4;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .skills, .education, .languages {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .skill-category {
+            margin-bottom: 24px;
+        }
+        
+        .skill-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .category-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .category-name i {
+            color: var(--accent);
+        }
+        
+        .skill-item {
+            margin-bottom: 12px;
+        }
+        
+        .skill-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        
+        .skill-name {
+            font-weight: 500;
+        }
+        
+        .skill-level {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            border-radius: 3px;
+        }
+        
+        .course-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .course-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .course-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        
+        .course-provider {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .language-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .language-name {
+            font-weight: 500;
+        }
+        
+        .language-proficiency {
+            background: var(--light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--secondary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .page {
+                grid-gap: 20px;
+            }
+            
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .experience {
+                grid-column: span 12;
+                margin-bottom: 24px;
+            }
+            
+            .side-column {
+                grid-column: span 12;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .skills, .education, .languages {
+                grid-column: span 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                grid-template-columns: 1fr;
+            }
+            
+            .identity, .photo {
+                grid-column: span 12;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .contact {
+                justify-content: center;
+            }
+            
+            .photo {
+                margin-top: 24px;
+            }
+            
+            .side-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills, .education, .languages {
+                grid-column: span 1;
+            }
+            
+            .achievement-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .achievement-title {
+                font-size: 0.95rem;
+            }
+            
+            .achievement-toggle {
+                position: absolute;
+                right: 16px;
+                top: 12px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .page {
+                padding: 0 16px;
+                margin: 1rem auto;
+            }
+            
+            .name {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            .page {
+                margin: 0;
+                max-width: 100%;
+            }
+            
+            .experience-card:hover, .metric-card:hover, .achievement-item:hover {
+                transform: none;
+                box-shadow: var(--card-shadow);
+            }
+            
+            .achievement-content {
+                max-height: none !important;
+                padding: 0 16px 16px !important;
+            }
+            
+            .achievement-toggle {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <header class="header">
+            <div class="identity">
+                <h1 class="name">Mark Guldborg Vad</h1>
+                <div class="profession">Strategic Operations & Sales Executive</div>
+                
+                <div class="contact">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>61614242</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Mark.guldborg.vad@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Denmark</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photo">
+                <div class="photo-frame">
+                    <img src="https://i.ibb.co/L6G5qC9/profile-picture.jpg" alt="Mark Guldborg Vad">
+                </div>
+            </div>
+        </header>
+        
+        <!-- Profile -->
+        <section class="profile">
+            <h2 class="section-title">Professional Profile</h2>
+            <div class="profile-content">
+                Seasoned leader with over a decade of experience enhancing operational efficiency, reducing costs, and driving process improvements across global organizations. Skilled in strategic thinking, change management, and building high-performing teams, with a proven track record of delivering measurable results. Analytical and innovative, with a passion for leveraging technology--including a keen interest in AI trends and applications--to identify business opportunities and achieve ambitious goals for long-term success.
+            </div>
+        </section>
+        
+        <!-- Metrics Grid -->
+        <div class="metrics">
+            <div class="metric-card">
+                <i class="fas fa-users metric-icon"></i>
+                <div class="metric-value">150</div>
+                <div class="metric-label">Business customers acquired from zero base</div>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-chart-line metric-icon"></i>
+                <div class="metric-value">360M</div>
+                <div class="metric-label">DKK P&L responsibility</div>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-percentage metric-icon"></i>
+                <div class="metric-value">10%</div>
+                <div class="metric-label">Cost reduction in insurance</div>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-globe-europe metric-icon"></i>
+                <div class="metric-value">20</div>
+                <div class="metric-label">European countries managed</div>
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <main class="experience">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Head of Sales</div>
+                        <div class="job-company">Byens Handel</div>
+                    </div>
+                    <div class="job-date">December 2023 - Present</div>
+                </div>
+                
+                <ul class="achievements">
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Built sales strategy from scratch
+                                <span class="achievement-type type-strategy">Strategy</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Developed and implemented the sales strategy from scratch, including comprehensive market analysis, competitive pricing models, and targeted early-stage customer acquisition strategies, successfully generating traction and initial customers despite initially lacking a demonstrable product.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Strategic partnership with trade association
+                                <span class="achievement-type type-sales">Sales</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Established a strategic partnership with "Handelstandsforeningen," a Danish trade association present in nearly all Danish cities, significantly accelerating early growth, facilitating bulk sales, and improving market penetration and credibility.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Designed customer journey frameworks
+                                <span class="achievement-type type-process">Process</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Designed and operationalized tailored customer journey frameworks and sales processes. Upon closing a sale, coordinated seamlessly with our onboarding specialist (second hire in Byens Handel) to promptly guide new business owners in effectively utilizing the app, including creating their initial advertisements and discount listings.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Leveraged partnerships for market entry
+                                <span class="achievement-type type-strategy">Strategy</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Leveraged strategic partnerships to effectively prepare, target, and secure potential customers prior to entering new markets, utilizing local insights and trusted expertise from Handelstandsforeningen to optimize sales effectiveness.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Implemented customer tracking systems
+                                <span class="achievement-type type-innovation">Innovation</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Selected and implemented structured internal systems and documented clear procedures for systematically tracking and managing prospect and customer interactions, ensuring detailed visibility for future visits and follow-ups.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Grew customer base from 0 to 150
+                                <span class="achievement-type type-sales">Sales</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Successfully grew customer base from 0 to 150 business customers, capturing approximately 30% of potential targeted businesses in each city entered, significantly strengthening the company's market position and revenue potential.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Head of Damage & Administration</div>
+                        <div class="job-company">Novasol</div>
+                    </div>
+                    <div class="job-date">October 2022 - October 2023</div>
+                </div>
+                
+                <ul class="achievements">
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Led international department
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Led the international Damage & Administration department, overseeing property damage cases, insurance-related incidents, and minor damages handled internally without involving external insurance providers, across 20 European countries.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                P&L responsibility (360M DKK)
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Held full Profit & Loss responsibility, successfully achieving a profit of 360 million DKK during my tenure.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Created knowledge database
+                                <span class="achievement-type type-innovation">Innovation</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Created and implemented an internal comprehensive knowledge database, providing employees easy access to guidelines, system procedures, and real-time updates (e.g., regional burning bans due to weather conditions), resulting in significantly improved workflow efficiency, reduced errors, and faster internal communication.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Reduced insurance costs 10%
+                                <span class="achievement-type type-strategy">Strategy</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Negotiated improved insurance terms by strategically leveraging existing mandatory private fire insurance coverage in Denmark. Removed redundant fire coverage from our policy while maintaining complete protection for customers, resulting in a 10% cost reduction in insurance premiums without compromising coverage quality.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Centralized damage processes
+                                <span class="achievement-type type-process">Process</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Centralized operational processes by channeling all damage cases from 31 local and multiple foreign offices directly to my department. This ensured complete oversight and control, eliminating backlog and significantly reducing case resolution times from months to mere days. Additionally implemented measurable KPIs for timely internal handling and external responses to insurance providers.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Modernized damage reporting
+                                <span class="achievement-type type-innovation">Innovation</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Modernized the "Minor Damage" concept by replacing ineffective paper-based reporting forms with a streamlined digital process. Property owners could directly contact a centralized service via phone or email, quickly receiving reimbursement for minor damages (under 1,000 DKK) upon submission of purchase receipts. Enhanced operational efficiency, reduced administrative burden at local offices, and proactively monitored damage data to detect and prevent potential fraud or abuse of trust-based reimbursements.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Incident Manager</div>
+                        <div class="job-company">TDC</div>
+                    </div>
+                    <div class="job-date">February 2019 - July 2022</div>
+                </div>
+                
+                <ul class="achievements">
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Led "Daily Pulse" forum
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Served as daily meeting leader for the "Daily Pulse" forum</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Optimized telecom processes
+                                <span class="achievement-type type-process">Process</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Optimized processes for fiber, coax, DSL, mobile, and mobile broadband</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Handled high-priority projects
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Handled high-priority and confidential projects directly from YouSee's top management</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                On-call duty leader
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>On-call duty leader with overall responsibility for ensuring customer interests in crisis situations</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Resolved 1000+ problems
+                                <span class="achievement-type type-process">Process</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Facilitated solutions to over 1000 reported problems through effective problem-solving</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Crisis communication lead
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Orchestrated clear and timely crisis communication both internally and externally</p>
+                        </div>
+                    </li>
+                    
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Proactive crisis management
+                                <span class="achievement-type type-strategy">Strategy</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Part of proactive crisis management during extraordinary events</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Additional job experiences are similarly structured but shortened for brevity -->
+            <div class="experience-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Team Leader</div>
+                        <div class="job-company">TDC</div>
+                    </div>
+                    <div class="job-date">December 2017 - February 2019</div>
+                </div>
+                
+                <ul class="achievements">
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Led 3rd level support team
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Led a specialized 3rd level support team of 14 employees</p>
+                        </div>
+                    </li>
+                    <!-- More achievements for this position -->
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Team Manager</div>
+                        <div class="job-company">SiTel</div>
+                    </div>
+                    <div class="job-date">August 2016 - December 2017</div>
+                </div>
+                
+                <ul class="achievements">
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Led high-performance team
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Led a high-performance billing service team of 12 people</p>
+                        </div>
+                    </li>
+                    <!-- More achievements for this position -->
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Manager</div>
+                        <div class="job-company">Browser MD S.R.L</div>
+                    </div>
+                    <div class="job-date">October 2010 - August 2016</div>
+                </div>
+                
+                <ul class="achievements">
+                    <li class="achievement-item">
+                        <div class="achievement-header">
+                            <div class="achievement-title">
+                                Remote team management
+                                <span class="achievement-type type-leadership">Leadership</span>
+                            </div>
+                            <div class="achievement-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="achievement-content">
+                            <p>Remotely managed a specialized team of 20 volunteers</p>
+                        </div>
+                    </li>
+                    <!-- More achievements for this position -->
+                </ul>
+            </div>
+        </main>
+        
+        <!-- Side Column -->
+        <aside class="side-column">
+            <!-- Skills -->
+            <div class="skills">
+                <h2 class="section-title">Key Competencies</h2>
+                
+                <div class="skill-category">
+                    <div class="category-name">
+                        <i class="fas fa-cogs"></i>
+                        Operational Excellence
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Process Optimization</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Cost Management</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Project Management</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-name">
+                        <i class="fas fa-users"></i>
+                        Leadership
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Team Development</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Change Management</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Stakeholder Mgmt</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-name">
+                        <i class="fas fa-chart-line"></i>
+                        Strategic Acumen
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Strategic Thinking</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Decision Making</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Innovation</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-name">
+                        <i class="fas fa-robot"></i>
+                        AI Enthusiast
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Hands-on usecases for AI</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">AI Industry Awareness</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Passion for AI Trends</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Professional Development -->
+            <div class="education">
+                <h2 class="section-title">Courses</h2>
+                
+                <div class="course-item">
+                    <div class="course-name">Leadership in Practice</div>
+                    <div class="course-provider">Novasol</div>
+                </div>
+                
+                <div class="course-item">
+                    <div class="course-name">License to Lead Part 1</div>
+                    <div class="course-provider">YouSee Leadership Academy</div>
+                </div>
+                
+                <div class="course-item">
+                    <div class="course-name">License to Lead Part 2</div>
+                    <div class="course-provider">YouSee Leadership Academy</div>
+                </div>
+                
+                <div class="course-item">
+                    <div class="course-name">COPC</div>
+                    <div class="course-provider">YouSee</div>
+                </div>
+                
+                <div class="course-item">
+                    <div class="course-name">Leadership, Sales, and Communication</div>
+                    <div class="course-provider">SalgDanmark (6 weeks)</div>
+                </div>
+                
+                <div class="course-item">
+                    <div class="course-name">SiTel Leadership Team Manager Track Program</div>
+                    <div class="course-provider">SiTel (6 months)</div>
+                </div>
+            </div>
+            
+            <!-- Languages -->
+            <div class="languages">
+                <h2 class="section-title">Languages</h2>
+                
+                <div class="language-item">
+                    <div class="language-name">Danish</div>
+                    <div class="language-proficiency">Native</div>
+                </div>
+                
+                <div class="language-item">
+                    <div class="language-name">English</div>
+                    <div class="language-proficiency">Fluent</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    
+    <script>
+        // Script to handle the expanding/collapsing of achievement items
+        document.addEventListener('DOMContentLoaded', function() {
+            const achievementHeaders = document.querySelectorAll('.achievement-header');
+            
+            achievementHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Expand the first achievement item in each job section by default
+            const experienceCards = document.querySelectorAll('.experience-card');
+            experienceCards.forEach(card => {
+                const firstItem = card.querySelector('.achievement-item');
+                if (firstItem) {
+                    firstItem.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
